@@ -12,7 +12,7 @@ const StyledHeader = styled.div`
 
 const AppName = styled.div`
     position: relative;
-    top: 140px;
+    top: 120px;
     font-size: 24px;
     color: ${themes.colors.dark};
     text-shadow: ${themes.effects.shadow};

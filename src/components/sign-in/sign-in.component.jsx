@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
+
+import {GlobalContext} from '../../context/global.state';
 
 import {ReactComponent as Email} from '../../assets/mail-icon.svg';
 import {ReactComponent as Password} from '../../assets/password-icon.svg';
@@ -9,21 +11,36 @@ import CustomButton from '../custom-button/custom-button.component';
 import FormWrapper from '../form-wrapper/form-wrapper.styles';
 
 const SignIn = ({switchPage}) => {
+    const {signInWithGoogle, signInWithEmail} = useContext(GlobalContext);
+
+    const [userData, setUserData] = useState({email: '', password: ''});
+    const {email, password} = userData;
+
+    const handleChange = event => {
+        const {value, name} = event.target;
+        setUserData({...userData, [name]: value});
+    }
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+        signInWithEmail(userData);
+    }
+
     return (
         <>
-            <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+            <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
                 <FormWrapper>
                     <Email />
-                    <FormInput name="email" type="email" placeholder={'E-mail'} />
+                    <FormInput name="email" type="email" value={email} onChange={handleChange} placeholder={'E-mail'} required/>
                 </FormWrapper>
                 <FormWrapper style={{marginBottom: '45px'}}>
                     <Password />
-                    <FormInput name="password" type="password" placeholder={'Password'} />
+                    <FormInput name="password" value={password} type="password" onChange={handleChange} placeholder={'Password'} required/>
                 </FormWrapper>
                 <CustomButton type="submit">
                     Sign In
                 </CustomButton>
-                <CustomButton type="button" googleSignIn>
+                <CustomButton type="button" onClick={() => signInWithGoogle()} googleSignIn>
                     <GoogleIcon />
                 </CustomButton>
             </form>

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
+
+import {GlobalContext} from '../../context/global.state';
 
 import {ReactComponent as Email} from '../../assets/mail-icon.svg';
 import {ReactComponent as Password} from '../../assets/password-icon.svg';
@@ -8,20 +10,40 @@ import CustomButton from '../custom-button/custom-button.component';
 import FormWrapper from '../form-wrapper/form-wrapper.styles';
 
 const SignUp = ({switchPage}) => {
+    const {signUp} = useContext(GlobalContext);
+
+    const [registerData, setRegisterData] = useState({email: '', password: '', confirmPassword: ''});
+    const {email, password, confirmPassword} = registerData;
+
+    const handleChange = event => {
+        const {value, name} = event.target;
+        setRegisterData({...registerData, [name]: value});
+    }
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+        if(password === confirmPassword) {
+            signUp(registerData)
+        } else {
+            alert("Password's didn't match");
+            return;
+        }
+    }
+
     return (
         <>
-            <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
+            <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
                 <FormWrapper>
                     <Email />
-                    <FormInput name="email" type="email" placeholder={'E-mail'} />
+                    <FormInput name="email" type="email" value={email} onChange={handleChange} placeholder={'E-mail'} required/>
                 </FormWrapper>
                 <FormWrapper>
                     <Password />
-                    <FormInput name="password" type="password" placeholder={'Password'} />
+                    <FormInput name="password" type="password" value={password} onChange={handleChange} placeholder={'Password'} required/>
                 </FormWrapper>
                 <FormWrapper style={{marginBottom: '45px'}}>
                     <Password />
-                    <FormInput name="confirmPassword" type="password" placeholder={'Confirm Password'} />
+                    <FormInput name="confirmPassword" type="password" value={confirmPassword} onChange={handleChange} placeholder={'Confirm Password'} required/>
                 </FormWrapper>
                 <CustomButton type="submit">
                     Sign Up

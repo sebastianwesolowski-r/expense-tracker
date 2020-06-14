@@ -17,6 +17,14 @@ const CustomBtn = styled.button`
     outline: none;
     margin-top: 25px;
     cursor: pointer;
+    border-radius: 5px;
+    transition-duration: 200ms;
+    &:hover {
+        filter: brightness(1.2);
+    }
+    &:active {
+        filter: brightness(1.6);
+    }
 `;
 
 const CustomButton = ({children, ...otherProps}) => (

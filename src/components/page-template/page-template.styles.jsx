@@ -5,7 +5,9 @@ const PageTemplate = styled.div`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 230px;
+    height: 100%;
+    padding-top: 230px;
+    border: 1px solid;
 `;
 
 export default PageTemplate;

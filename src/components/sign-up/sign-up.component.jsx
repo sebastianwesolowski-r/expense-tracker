@@ -1,6 +1,4 @@
-import React, {useState, useContext} from 'react';
-
-import {GlobalContext} from '../../context/global.state';
+import React, {useState} from 'react';
 
 import {ReactComponent as Email} from '../../assets/mail-icon.svg';
 import {ReactComponent as Password} from '../../assets/password-icon.svg';
@@ -9,8 +7,7 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import FormWrapper from '../form-wrapper/form-wrapper.styles';
 
-const SignUp = ({switchPage}) => {
-    const {signUp} = useContext(GlobalContext);
+const SignUp = ({switchPage, signUp}) => {
 
     const [registerData, setRegisterData] = useState({email: '', password: '', confirmPassword: ''});
     const {email, password, confirmPassword} = registerData;

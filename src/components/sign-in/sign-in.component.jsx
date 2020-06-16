@@ -1,6 +1,4 @@
-import React, {useState, useContext} from 'react';
-
-import {GlobalContext} from '../../context/global.state';
+import React, {useState} from 'react';
 
 import {ReactComponent as Email} from '../../assets/mail-icon.svg';
 import {ReactComponent as Password} from '../../assets/password-icon.svg';
@@ -10,8 +8,7 @@ import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import FormWrapper from '../form-wrapper/form-wrapper.styles';
 
-const SignIn = ({switchPage}) => {
-    const {signInWithGoogle, signInWithEmail} = useContext(GlobalContext);
+const SignIn = ({switchPage, signInWithGoogle, signInWithEmail}) => {
 
     const [userData, setUserData] = useState({email: '', password: ''});
     const {email, password} = userData;

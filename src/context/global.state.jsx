@@ -45,7 +45,12 @@ export const GlobalProvider = ({children}) => {
     }
 
     async function signInWithEmail(userData) {
+        dispatch({
+            type: ActionTypes.EMAIL_SIGN_IN_START
+        });
+
         const {email, password} = userData;
+
         try {
             const {user} = await auth.signInWithEmailAndPassword(email, password);
             await getSnapshotFromUser(user);
@@ -59,6 +64,10 @@ export const GlobalProvider = ({children}) => {
     }
 
     async function signUp(registerData) {
+        dispatch({
+            type: ActionTypes.SIGN_UP_START
+        });
+
         const {email, password} = registerData;
 
         try {
@@ -76,11 +85,29 @@ export const GlobalProvider = ({children}) => {
         }
     }
 
+    async function signOut() {
+        try {
+            await auth.signOut();
+            dispatch({
+                type: ActionTypes.SIGN_OUT_SUCCESS
+            });
+        } catch(error) {
+            dispatch({
+                type: ActionTypes.SIGN_OUT_FAILURE,
+                payload: error
+            });
+            alert(error.message);
+        }
+    }
+
     return (
         <GlobalContext.Provider value={{
+            currentUser: state.currentUser,
+            isProcessing: state.isProcessing,
             signInWithGoogle,
             signInWithEmail,
-            signUp
+            signUp,
+            signOut
         }}>
             {children}
         </GlobalContext.Provider>

@@ -3,15 +3,10 @@ import styled from 'styled-components';
 
 import {themes} from '../../themes/themes';
 
-const StyledHeader = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-`;
-
 const AppName = styled.div`
-    position: relative;
+    width: 100%;
+    text-align: center;
+    position: absolute;
     top: 120px;
     font-size: 24px;
     color: ${themes.colors.dark};
@@ -19,9 +14,7 @@ const AppName = styled.div`
 `;
 
 const Header = () => (
-    <StyledHeader>
-        <AppName>Expense Tracker</AppName>
-    </StyledHeader>
+    <AppName>Expense Tracker</AppName>
 );
 
 export default Header;

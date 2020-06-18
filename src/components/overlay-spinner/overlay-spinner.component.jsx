@@ -8,11 +8,12 @@ const SpinnerOverlay = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba(249, 249, 249, 0.45);
+    padding-bottom: 25%;
 `;
 
 const SpinnerContainer = styled.div`

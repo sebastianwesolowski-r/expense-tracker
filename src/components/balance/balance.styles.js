@@ -7,12 +7,12 @@ export const BalanceContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 0 35px;
-    font-size: 17px;
+    font-size: 19px;
     text-shadow: ${themes.effects.shadow};
 `;
 
 export const BalanceType = styled.p`
-    color: ${themes.colors.black};
+    color: ${themes.colors.darkblack};
 `;
 
 export const BalanceAmountContainer = styled.div`
@@ -27,8 +27,9 @@ export const BalanceAmount = styled.p`
 
 export const BalanceDetails = styled.p`
     color: rgba(0, 0, 0, 0.60);
-    font-size: 13px;
+    font-size: 14px;
     text-shadow: none;
     margin: 0;
+    cursor: pointer;
 `;
 

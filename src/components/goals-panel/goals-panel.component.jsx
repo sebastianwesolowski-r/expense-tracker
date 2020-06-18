@@ -7,7 +7,7 @@ const GoalsPanelContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: ${themes.colors.black};
+    color: ${themes.colors.darkblack};
     text-shadow: ${themes.effects.shadow};
 `;
 
@@ -16,7 +16,8 @@ const GoalsHeader = styled.p`
     margin-bottom: 45px;
 `;
 
-const GoalsMessage = styled.p`
+const GoalsMessage = styled.div`
+    text-align: center;
     font-size: 16px;
     margin: 0;
 `
@@ -31,7 +32,8 @@ const GoalsPanel = ({goals}) => {
                 <div></div>
             ) : (
                 <GoalsMessage>
-                    You don't have any goals yet.
+                    <p>You don't have any goals yet</p>
+                    <p>Click the button below to add one</p>
                 </GoalsMessage>
             )
         }

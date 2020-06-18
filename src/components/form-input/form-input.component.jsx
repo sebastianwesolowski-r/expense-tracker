@@ -13,6 +13,7 @@ const Input = styled.input`
     border: none;
     border-bottom: 1px solid ${themes.colors.lightblue};
     outline: none;
+    margin-bottom: ${props => props.popup ? '45px' : '0'};
     &::placeholder {
         color: ${themes.colors.dark};
         font-size: 15px;

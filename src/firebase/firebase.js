@@ -23,6 +23,7 @@ export const createUserProfile = async(userAuth, additionalData) => {
         const displayName = email.slice(0, email.indexOf('@'));
         const createdAt = new Date();
         const accountBalance = 0;
+        const accountTransactions = [];
         const goals = [];
         try {
             await userRef.set({
@@ -30,6 +31,7 @@ export const createUserProfile = async(userAuth, additionalData) => {
                 email,
                 createdAt,
                 accountBalance,
+                accountTransactions,
                 goals,
                 ...additionalData
             });

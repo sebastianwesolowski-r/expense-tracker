@@ -8,6 +8,7 @@ const updateAmountStyles = css`
     color: ${themes.colors.leaf};
     border: 2px solid ${themes.colors.leaf};
     margin: 50px 0;
+    transition-duration: 350ms;
     &:hover {
         filter: none;
         box-shadow: inset 250px 0 0 0 #EFEFEF;
@@ -15,11 +16,11 @@ const updateAmountStyles = css`
 `;
 
 const addGoalStyles = css`
-    width: 50px;
-    height: 50px;
-    position: fixed;
-    bottom: 10px;
-    right: 20px;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
     background-color: ${themes.colors.lightblue};
     opacity: 0.8;
 `
@@ -43,7 +44,7 @@ export const CustomBtn = styled.button`
     font-size: 14px;
     border: none;
     border-radius: 5px;
-    background-color: ${props => props.googleSignIn ? themes.colors.googleblue : themes.colors.dark};
+    background-color: ${props => props.googleSignIn ? themes.colors.googleblue : themes.colors.darkblack};
     outline: none;
     margin-top: 25px;
     cursor: pointer;

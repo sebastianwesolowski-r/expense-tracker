@@ -1,6 +1,7 @@
 export const themes = {
     colors: {
-        dark: '#2C364B',
+        darkblack: '#2C364B',
+        darkred: '#D21616',
         black: 'rgba(0, 0, 0, 0.85);',
         lightblue: '#4B6BAD',
         googleblue: '#4285F4',

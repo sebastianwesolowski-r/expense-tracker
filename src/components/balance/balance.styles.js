@@ -27,7 +27,7 @@ export const BalanceAmount = styled.p`
 
 export const BalanceDetails = styled.p`
     color: rgba(0, 0, 0, 0.60);
-    font-size: 14px;
+    font-size: 15px;
     text-shadow: none;
     margin: 0;
     cursor: pointer;

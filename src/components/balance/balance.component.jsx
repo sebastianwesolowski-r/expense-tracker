@@ -19,7 +19,7 @@ const Balance = ({goal, amount, openPopup}) => {
                     $ {amount}
                 </BalanceAmount>
                 <BalanceDetails onClick={() => openPopup('transactionHistory')}>
-                    details
+                    Details
                 </BalanceDetails>
             </BalanceAmountContainer>
         </BalanceContainer>

@@ -23,7 +23,6 @@ const GoalsMessage = styled.div`
 `
 
 const GoalsPanel = ({goals}) => {
-    console.log(goals);
     return(
     <GoalsPanelContainer>
         <GoalsHeader>Your Goals</GoalsHeader>

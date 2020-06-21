@@ -1,4 +1,5 @@
 import ActionTypes from './app.types';
+import { addTransaction, removeTransaction } from './app.utils';
 
 const AppReducer = (state, action) => {
     switch(action.type) {
@@ -34,6 +35,16 @@ const AppReducer = (state, action) => {
                 isProcessing: false,
                 error: action.payload
             };
+        case ActionTypes.ADD_TRANSACTION:
+            return {
+                ...state,
+                currentUser: {...state.currentUser, accountTransactions: addTransaction(state.currentUser.accountTransactions, action.payload)}
+            }
+        case ActionTypes.REMOVE_TRANSACTION:
+            return {
+                ...state,
+                currentUser: {...state.currentUser, accountTransactions: removeTransaction(state.currentUser.accountTransactions, action.payload)}
+            }
         default: return state;
     };
 };

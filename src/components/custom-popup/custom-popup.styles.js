@@ -34,6 +34,12 @@ const CustomPopup = styled.div`
         width: 100%;
         padding: 0;
     }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
 `;
 
 export default CustomPopup;

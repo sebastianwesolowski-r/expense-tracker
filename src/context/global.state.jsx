@@ -2,7 +2,8 @@ import React, {createContext, useReducer} from 'react';
 import AppReducer from './app.reducer';
 
 import ActionTypes from './app.types';
-import {auth, googleProvider, createUserProfile} from '../firebase/firebase';
+import {auth, googleProvider, createUserProfile, firestore} from '../firebase/firebase';
+import firebase from '../firebase/firebase';
 
 const INITIAL_STATE = {
     currentUser: null,
@@ -100,6 +101,33 @@ export const GlobalProvider = ({children}) => {
         }
     }
 
+    function getUserRef() {
+        const userRef = firestore.doc(`users/${state.currentUser.id}`);
+        return userRef;
+    }
+
+    async function addTransaction(transaction) {
+        const userRef = await getUserRef();
+        await userRef.update({
+            accountTransactions: firebase.firestore.FieldValue.arrayUnion(transaction)
+        })
+        dispatch({
+            type: ActionTypes.ADD_TRANSACTION,
+            payload: transaction
+        })
+    }
+
+    function removeTransaction(transaction) {
+        const userRef = getUserRef();
+        userRef.update({
+            accountTransactions: firebase.firestore.FieldValue.arrayRemove(transaction)
+        })
+        dispatch({
+            type: ActionTypes.REMOVE_TRANSACTION,
+            payload: transaction
+        })
+    }
+
     return (
         <GlobalContext.Provider value={{
             currentUser: state.currentUser,
@@ -107,7 +135,9 @@ export const GlobalProvider = ({children}) => {
             signInWithGoogle,
             signInWithEmail,
             signUp,
-            signOut
+            signOut,
+            addTransaction,
+            removeTransaction
         }}>
             {children}
         </GlobalContext.Provider>

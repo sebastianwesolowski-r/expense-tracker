@@ -9,10 +9,28 @@ export const TransactionContainer = styled.li`
     width: 80%;
     height: 35px;
     font-size: 16px;
-    padding-left: 10px;
-    padding-right: 20px;
+    padding: 0 10px;
     margin-bottom: 20px;
     border: 2px solid ${themes.colors.lightblue};
     border-right: 10px solid ${props => props.type === 'expense' ? themes.colors.darkred : themes.colors.leaf};
-    border-radius: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 200ms;
+    button {
+        display: none;
+        position: absolute;
+        left: 30px;
+        padding-bottom: 35px;
+        border: none;
+        background: none;
+        outline: none;
+    }
+    &:hover {
+        button {
+            display: block;
+        }
+    }
+    &:active {
+        background-color: ${themes.colors.darkred};
+    }
 `;

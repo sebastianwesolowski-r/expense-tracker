@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 import {themes} from '../../themes/themes';
 
 const updateAmountStyles = css`
+    width: 190px;
     background: transparent;
     font-size: 15px;
     color: ${themes.colors.leaf};
@@ -16,8 +17,8 @@ const updateAmountStyles = css`
 `;
 
 const addGoalStyles = css`
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     position: absolute;
     bottom: 15px;
     right: 25px;

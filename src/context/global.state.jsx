@@ -8,7 +8,9 @@ import firebase from '../firebase/firebase';
 const INITIAL_STATE = {
     currentUser: null,
     isProcessing: false,
-    error: null
+    error: null,
+    selectedGoal: null,
+    history: null
 };
 
 export const GlobalContext = createContext(INITIAL_STATE);
@@ -106,38 +108,71 @@ export const GlobalProvider = ({children}) => {
         return userRef;
     }
 
-    async function addTransaction(transaction) {
+    async function addTransaction(transaction, selectedGoal) {
         const userRef = await getUserRef();
-        await userRef.update({
-            accountTransactions: firebase.firestore.FieldValue.arrayUnion(transaction)
-        })
-        dispatch({
-            type: ActionTypes.ADD_TRANSACTION,
-            payload: transaction
-        })
+        if(selectedGoal === null) {
+            await userRef.update({
+                accountTransactions: firebase.firestore.FieldValue.arrayUnion(transaction)
+            });
+            dispatch({
+                type: ActionTypes.ADD_TRANSACTION,
+                payload: transaction
+            });
+        } else {
+            const selectedGoalTransactions = selectedGoal.goalTransactions;
+            selectedGoalTransactions.push(transaction);
+            await userRef.update({
+                
+            })
+        }
     }
 
     function removeTransaction(transaction) {
         const userRef = getUserRef();
         userRef.update({
             accountTransactions: firebase.firestore.FieldValue.arrayRemove(transaction)
-        })
+        });
         dispatch({
             type: ActionTypes.REMOVE_TRANSACTION,
             payload: transaction
-        })
+        });
+    }
+
+    function calculateTotal(transactions) {
+        let amounts = transactions.map(transaction => transaction.amount);
+        let total = amounts.reduce((acc, amount) => (acc += amount), 0).toFixed(2);
+        return total;
+    }
+
+    function selectGoal(goal) {
+        dispatch({
+            type: ActionTypes.SELECT_GOAL,
+            payload: goal
+        });
+    }
+
+    function setHistory(history) {
+        dispatch({
+            type: ActionTypes.SET_HISTORY,
+            payload: history
+        });
     }
 
     return (
         <GlobalContext.Provider value={{
             currentUser: state.currentUser,
             isProcessing: state.isProcessing,
+            selectedGoal: state.selectedGoal,
+            history: state.history,
             signInWithGoogle,
             signInWithEmail,
             signUp,
             signOut,
             addTransaction,
-            removeTransaction
+            removeTransaction,
+            calculateTotal,
+            selectGoal,
+            setHistory
         }}>
             {children}
         </GlobalContext.Provider>

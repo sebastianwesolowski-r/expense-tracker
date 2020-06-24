@@ -12,9 +12,11 @@ export const IncomeExpenseContainer = styled.div`
     ${displayFlex};
     flex-direction: column;
     width: 80%;
-    height: 65px;
+    max-height: 65px;
     margin-bottom: 20px;
     font-size: 17px;
+    overflow-x: hidden;
+    overflow-y: auto;
 `;
 
 export const Income = styled.div`

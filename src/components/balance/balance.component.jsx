@@ -2,15 +2,15 @@ import React from 'react';
 
 import {BalanceContainer, BalanceType, BalanceAmountContainer, BalanceAmount, BalanceDetails} from './balance.styles';
 
-const Balance = ({goal, amount, openPopup}) => {
+const Balance = ({selectedGoal, amount, openPopup}) => {
     return (
         <BalanceContainer>
             <BalanceType>
                 {
-                    goal ? (
-                        'Current Balance'
+                    selectedGoal ? (
+                        'Current balance'
                     ) : (
-                        'Cash Available'
+                        'Cash available'
                     )
                 }
             </BalanceType>
@@ -19,7 +19,7 @@ const Balance = ({goal, amount, openPopup}) => {
                     $ {amount}
                 </BalanceAmount>
                 <BalanceDetails onClick={() => openPopup('transactionHistory')}>
-                    Details
+                    details
                 </BalanceDetails>
             </BalanceAmountContainer>
         </BalanceContainer>

@@ -3,25 +3,19 @@ import styled, {css} from 'styled-components';
 import {themes} from '../../themes/themes';
 
 const updateAmountStyles = css`
-    width: 190px;
-    background: transparent;
-    font-size: 15px;
-    color: ${themes.colors.leaf};
-    border: 2px solid ${themes.colors.leaf};
+    width: 170px;
+    font-size: 16px;
+    background-color: ${themes.colors.lightblue};
     margin: 50px 0;
     transition-duration: 350ms;
-    &:hover {
-        filter: none;
-        box-shadow: inset 250px 0 0 0 #EFEFEF;
-    }
 `;
 
 const addGoalStyles = css`
     width: 55px;
     height: 55px;
-    position: absolute;
+    position: fixed;
     bottom: 15px;
-    right: 25px;
+    margin-left: 170px;
     background-color: ${themes.colors.lightblue};
     opacity: 0.8;
 `

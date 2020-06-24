@@ -19,13 +19,16 @@ const AppReducer = (state, action) => {
                 ...state,
                 currentUser: action.payload,
                 isProcessing: false,
-                error: null
+                error: null,
+                history: action.payload.accountTransactions
             };
         case ActionTypes.SIGN_OUT_SUCCESS:
             return {
                 ...state,
                 currentUser: null,
-                error: null
+                error: null,
+                goalId: null,
+                history: null
             };
         case ActionTypes.SIGN_IN_FAILURE:
         case ActionTypes.SIGN_OUT_FAILURE:
@@ -39,11 +42,21 @@ const AppReducer = (state, action) => {
             return {
                 ...state,
                 currentUser: {...state.currentUser, accountTransactions: addTransaction(state.currentUser.accountTransactions, action.payload)}
-            }
+            };
         case ActionTypes.REMOVE_TRANSACTION:
             return {
                 ...state,
                 currentUser: {...state.currentUser, accountTransactions: removeTransaction(state.currentUser.accountTransactions, action.payload)}
+            };
+        case ActionTypes.SELECT_GOAL:
+            return {
+                ...state,
+                selectedGoal: action.payload
+            };
+        case ActionTypes.SET_HISTORY:
+            return {
+                ...state,
+                history: action.payload
             }
         default: return state;
     };

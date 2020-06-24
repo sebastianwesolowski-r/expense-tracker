@@ -11,9 +11,9 @@ export const TransactionContainer = styled.li`
     font-size: 16px;
     padding: 0 10px;
     margin-bottom: 20px;
-    border: 2px solid ${themes.colors.lightblue};
-    border-right: 10px solid ${props => props.type === 'expense' ? themes.colors.darkred : themes.colors.leaf};
-    border-radius: 10px;
+    border: 1px solid ${themes.colors.lightblue};
+    border-right: 6px solid ${props => props.type === 'expense' ? themes.colors.darkred : themes.colors.leaf};
+    border-radius: 4px;
     cursor: pointer;
     transition-duration: 200ms;
     button {

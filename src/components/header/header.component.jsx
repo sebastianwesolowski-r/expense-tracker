@@ -7,10 +7,10 @@ const AppName = styled.div`
     width: 100%;
     text-align: center;
     position: absolute;
-    top: 90px;
+    top: 110px;
     font-size: 24px;
-    color: ${themes.colors.darkblack};
-    text-shadow: ${themes.effects.shadow};
+    color: ${themes.colors.black};
+
 `;
 
 const Header = () => (

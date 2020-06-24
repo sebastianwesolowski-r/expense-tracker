@@ -1,34 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import {themes} from '../../themes/themes';
+import {GoalsPanelContainer, GoalsHeader, GoalsMessage, GoalsList} from './goals.panel.styles';
 
-const GoalsPanelContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: ${themes.colors.darkblack};
-    text-shadow: ${themes.effects.shadow};
-`;
+import Goal from '../goal/goal.component';
 
-const GoalsHeader = styled.p`
-    font-size: 19px;
-    margin-bottom: 45px;
-`;
-
-const GoalsMessage = styled.div`
-    text-align: center;
-    font-size: 16px;
-    margin: 0;
-`
-
-const GoalsPanel = ({goals}) => {
-    return(
+const GoalsPanel = ({goals}) => (
     <GoalsPanelContainer>
-        <GoalsHeader>Your Goals</GoalsHeader>
+        <GoalsHeader>Your goals</GoalsHeader>
         {
             goals.length !== 0 ? (
-                <div></div>
+                <GoalsList>
+                    {
+                        goals.map(goal => (
+                            <Goal key={goal.id} goal={goal} />
+                        ))
+                    }
+                </GoalsList>
             ) : (
                 <GoalsMessage>
                     <p>You don't have any goals yet</p>
@@ -38,6 +25,5 @@ const GoalsPanel = ({goals}) => {
         }
     </GoalsPanelContainer>
 );
-};
 
 export default GoalsPanel;

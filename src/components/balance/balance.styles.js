@@ -23,10 +23,12 @@ export const BalanceAmountContainer = styled.div`
 
 export const BalanceAmount = styled.p`
     color: ${themes.colors.lightblue};
+    font-size: 24px;
+    margin-bottom: 15px;
 `;
 
 export const BalanceDetails = styled.p`
-    color: rgba(0, 0, 0, 0.60);
+    color: ${themes.colors.darkblack};
     font-size: 15px;
     text-shadow: none;
     margin: 0;

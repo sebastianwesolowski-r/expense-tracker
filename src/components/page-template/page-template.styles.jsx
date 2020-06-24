@@ -6,7 +6,9 @@ const PageTemplate = styled.div`
     align-items: center;
     width: 100%;
     height: 100%;
-    padding-top: 230px;
+    padding-top: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
 `;
 
 export default PageTemplate;

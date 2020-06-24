@@ -9,7 +9,8 @@ const SignOutContainer = styled.div`
     justify-content: center;
     width: 100%;
     position: absolute;
-    top: 15px;
+    top: 20px;
+    left: 0;
     font-size: 14px;
     color: #525252;
     padding-left: 15px;

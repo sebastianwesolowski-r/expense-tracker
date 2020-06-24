@@ -6,7 +6,7 @@ import CustomPopup from '../custom-popup/custom-popup.styles';
 import CustomBtn from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 
-const AddTransaction = ({closePopup, addTransaction}) => {
+const AddTransaction = ({closePopup, addTransaction, selectedGoal}) => {
 
     const [transactionData, setTransactionData] = useState({title: '', amount: 0});
     const {title, amount} = transactionData;
@@ -23,7 +23,8 @@ const AddTransaction = ({closePopup, addTransaction}) => {
             title: title,
             amount: +amount
         };
-        await addTransaction(newTransaction);
+        await addTransaction(newTransaction, selectedGoal);
+        closePopup();
     };
 
     return (

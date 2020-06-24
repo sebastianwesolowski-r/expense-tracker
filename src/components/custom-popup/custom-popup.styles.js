@@ -14,7 +14,7 @@ const CustomPopup = styled.div`
     right: 0;
     margin: auto;
     padding: 20px 0;
-    border: 2px solid ${themes.colors.lightblue};
+    border: 1px solid ${themes.colors.lightblue};
     border-radius: 10px;
     background-color: #FAFAFA;
     box-shadow: ${themes.effects.shadow};
@@ -23,8 +23,8 @@ const CustomPopup = styled.div`
     }
     svg {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 15px;
+        right: 15px;
         cursor: pointer;
     }
     ul {

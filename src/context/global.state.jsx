@@ -110,7 +110,7 @@ export const GlobalProvider = ({children}) => {
 
     async function addTransaction(transaction, selectedGoal) {
         const userRef = await getUserRef();
-        if(selectedGoal === null) {
+        if(!selectedGoal) {
             await userRef.update({
                 accountTransactions: firebase.firestore.FieldValue.arrayUnion(transaction)
             });
@@ -119,22 +119,59 @@ export const GlobalProvider = ({children}) => {
                 payload: transaction
             });
         } else {
-            const selectedGoalTransactions = selectedGoal.goalTransactions;
-            selectedGoalTransactions.push(transaction);
+            dispatch({
+                type: ActionTypes.ADD_TRANSACTION_TO_GOAL,
+                payload: {selectedGoal, transaction}
+            });
             await userRef.update({
-                
-            })
+                goals: state.currentUser.goals
+            });
         }
     }
 
-    function removeTransaction(transaction) {
+    async function removeTransaction(transaction, selectedGoal) {
         const userRef = getUserRef();
-        userRef.update({
-            accountTransactions: firebase.firestore.FieldValue.arrayRemove(transaction)
+        if(!selectedGoal) {
+            await userRef.update({
+                accountTransactions: firebase.firestore.FieldValue.arrayRemove(transaction)
+            });
+            dispatch({
+                type: ActionTypes.REMOVE_TRANSACTION,
+                payload: transaction
+            });
+        } else {
+            dispatch({
+                type: ActionTypes.REMOVE_TRANSACTION_FROM_GOAL,
+                payload: {selectedGoal, transaction}
+            });
+            await userRef.update({
+                goals: state.currentUser.goals
+            });
+        }
+    }
+
+    async function addGoal(goal) {
+        const userRef = getUserRef();
+        await userRef.update({
+            goals: firebase.firestore.FieldValue.arrayUnion(goal)
         });
         dispatch({
-            type: ActionTypes.REMOVE_TRANSACTION,
-            payload: transaction
+            type: ActionTypes.ADD_GOAL,
+            payload: goal
+        });
+    }
+
+    async function moveGoalToAchieved(goal) {
+        const userRef = getUserRef();
+        await userRef.update({
+            goals: firebase.firestore.FieldValue.arrayRemove(goal)
+        });
+        await userRef.update({
+            achievedGoals: firebase.firestore.FieldValue.arrayUnion(goal)
+        })
+        dispatch({
+            type: ActionTypes.MOVE_GOAL_TO_ACHIEVED,
+            payload: goal
         });
     }
 
@@ -158,6 +195,14 @@ export const GlobalProvider = ({children}) => {
         });
     }
 
+    if(state.selectedGoal) {
+        if(parseInt(calculateTotal(state.selectedGoal.goalTransactions)) === state.selectedGoal.goalTarget || parseInt(calculateTotal(state.selectedGoal.goalTransactions)) > state.selectedGoal.goalTarget) {
+            moveGoalToAchieved(state.selectedGoal);
+            selectGoal(null);
+            setHistory(state.currentUser.accountTransactions);
+        }
+    }
+
     return (
         <GlobalContext.Provider value={{
             currentUser: state.currentUser,
@@ -172,7 +217,9 @@ export const GlobalProvider = ({children}) => {
             removeTransaction,
             calculateTotal,
             selectGoal,
-            setHistory
+            setHistory,
+            addGoal,
+            moveGoalToAchieved
         }}>
             {children}
         </GlobalContext.Provider>

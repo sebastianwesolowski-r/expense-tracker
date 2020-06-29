@@ -22,6 +22,7 @@ export const IncomeExpenseContainer = styled.div`
 export const Income = styled.div`
     ${displayFlex};
     width: 100%;
+    margin-bottom: 10px;
     span {
         color: ${themes.colors.leaf};
     }

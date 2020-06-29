@@ -1,5 +1,5 @@
 import ActionTypes from './app.types';
-import { addTransaction, removeTransaction } from './app.utils';
+import { addTransaction, addTransactionToGoal, removeTransaction, removeTransactionFromGoal, addGoal, moveGoalToAchieved } from './app.utils';
 
 const AppReducer = (state, action) => {
     switch(action.type) {
@@ -27,7 +27,7 @@ const AppReducer = (state, action) => {
                 ...state,
                 currentUser: null,
                 error: null,
-                goalId: null,
+                selectedGoal: null,
                 history: null
             };
         case ActionTypes.SIGN_IN_FAILURE:
@@ -43,10 +43,20 @@ const AppReducer = (state, action) => {
                 ...state,
                 currentUser: {...state.currentUser, accountTransactions: addTransaction(state.currentUser.accountTransactions, action.payload)}
             };
+        case ActionTypes.ADD_TRANSACTION_TO_GOAL:
+            return {
+                ...state,
+                currentUser: {...state.currentUser, goals: addTransactionToGoal(state.currentUser.goals, action.payload)}
+            };
         case ActionTypes.REMOVE_TRANSACTION:
             return {
                 ...state,
                 currentUser: {...state.currentUser, accountTransactions: removeTransaction(state.currentUser.accountTransactions, action.payload)}
+            };
+        case ActionTypes.REMOVE_TRANSACTION_FROM_GOAL:
+            return {
+                ...state,
+                currentUser: {...state.currentUser, goals: removeTransactionFromGoal(state.currentUser.goals, action.payload)}
             };
         case ActionTypes.SELECT_GOAL:
             return {
@@ -57,7 +67,17 @@ const AppReducer = (state, action) => {
             return {
                 ...state,
                 history: action.payload
-            }
+            };
+        case ActionTypes.ADD_GOAL:
+            return {
+                ...state,
+                currentUser: {...state.currentUser, goals: addGoal(state.currentUser.goals, action.payload)}
+            };
+        case ActionTypes.MOVE_GOAL_TO_ACHIEVED:
+            return {
+                ...state,
+                currentUser: moveGoalToAchieved(state.currentUser, action.payload)
+            };
         default: return state;
     };
 };

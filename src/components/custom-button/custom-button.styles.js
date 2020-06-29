@@ -8,6 +8,7 @@ const updateAmountStyles = css`
     background-color: ${themes.colors.lightblue};
     margin: 50px 0;
     transition-duration: 350ms;
+    padding: 10px 0;
 `;
 
 const addGoalStyles = css`

@@ -12,8 +12,19 @@ export const GoalsPanelContainer = styled.div`
 `;
 
 export const GoalsHeader = styled.p`
+    width: 100%;
+    position: relative;
     font-size: 19px;
     margin-bottom: 45px;
+    text-align: center;
+    span {
+        position: absolute;
+        font-size: 13px;
+        color: ${themes.colors.googleblue};
+        right: 13%;
+        bottom: 0;
+        cursor: pointer
+    }
 `;
 
 export const GoalsMessage = styled.div`

@@ -8,10 +8,10 @@ import {TransactionContainer} from './transaction.styles';
 
 const Transaction = ({transaction}) => {
     
-    const {removeTransaction} = useContext(GlobalContext);
+    const {removeTransaction, selectedGoal} = useContext(GlobalContext);
     
     return (
-        <TransactionContainer type={transaction.amount < 0 ? 'expense' : 'income'} onClick={() => removeTransaction(transaction)}>
+        <TransactionContainer type={transaction.amount < 0 ? 'expense' : 'income'} onClick={() => removeTransaction(transaction, selectedGoal)}>
             {transaction.title} <span>{transaction.amount}$</span>
             <button>
                 <Delete />

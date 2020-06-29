@@ -9,7 +9,7 @@ const CustomPopup = styled.div`
     width: 87.5%;
     position: absolute;
     z-index: 3;
-    top: 220px;
+    top: 190px;
     left: 0;
     right: 0;
     margin: auto;

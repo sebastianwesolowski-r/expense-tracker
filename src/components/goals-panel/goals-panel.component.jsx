@@ -4,9 +4,12 @@ import {GoalsPanelContainer, GoalsHeader, GoalsMessage, GoalsList} from './goals
 
 import Goal from '../goal/goal.component';
 
-const GoalsPanel = ({goals}) => (
+const GoalsPanel = ({goals, openPopup}) => (
     <GoalsPanelContainer>
-        <GoalsHeader>Your goals</GoalsHeader>
+        <GoalsHeader>
+            Your goals
+            <span onClick={() => openPopup('achievedGoals')}>Achieved</span>
+        </GoalsHeader>
         {
             goals.length !== 0 ? (
                 <GoalsList>

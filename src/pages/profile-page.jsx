@@ -11,12 +11,13 @@ import GoalsPanel from '../components/goals-panel/goals-panel.component';
 import AddGoal from '../components/add-goal/add-goal.component';
 import AddTransaction from '../components/add-transaction/add-transaction.component';
 import TransactionHistory from '../components/transactions-history/transactions-history.component';
+import AchievedGoals from '../components/achieved-goals/achieved-goals.component';
 
 import PageTemplate from '../components/page-template/page-template.styles';
 
 const ProfilePage = () => {
-    const {currentUser, history, selectedGoal, signOut, addTransaction, calculateTotal} = useContext(GlobalContext);
-    const {email, goals} = currentUser;
+    const {currentUser, history, selectedGoal, signOut, addTransaction, calculateTotal, addGoal} = useContext(GlobalContext);
+    const {email, goals, achievedGoals} = currentUser;
 
     let amount = calculateTotal(history);
 
@@ -28,7 +29,7 @@ const ProfilePage = () => {
         switch(popupType) {
             case 'addGoal':
                 return (
-                    <AddGoal closePopup={closePopup}/>
+                    <AddGoal closePopup={closePopup} addGoal={addGoal}/>
                 );
             case 'transactionHistory':
                 return (
@@ -38,6 +39,10 @@ const ProfilePage = () => {
                 return (
                     <AddTransaction closePopup={closePopup} addTransaction={addTransaction} selectedGoal={selectedGoal}/>
                 );
+            case 'achievedGoals':
+                return (
+                    <AchievedGoals closePopup={closePopup}  achievedGoals={achievedGoals}/>
+                )
             case null:
             default:
                 return;
@@ -51,7 +56,7 @@ const ProfilePage = () => {
             <CustomBtn onClick={() => openPopup('addTransaction')} updateAmount>
                 update
             </CustomBtn>
-            <GoalsPanel goals={goals}/>
+            <GoalsPanel goals={goals} openPopup={openPopup}/>
             <CustomBtn onClick={() => openPopup('addGoal')} addGoal>
                 <Plus />
             </CustomBtn>

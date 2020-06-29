@@ -22,17 +22,17 @@ export const createUserProfile = async(userAuth, additionalData) => {
         const {email} = userAuth;
         const displayName = email.slice(0, email.indexOf('@'));
         const createdAt = new Date();
-        const accountBalance = 0;
         const accountTransactions = [];
         const goals = [];
+        const achievedGoals = [];
         try {
             await userRef.set({
                 displayName,
                 email,
                 createdAt,
-                accountBalance,
                 accountTransactions,
                 goals,
+                achievedGoals,
                 ...additionalData
             });
         } catch(error) {

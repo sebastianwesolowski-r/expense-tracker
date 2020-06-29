@@ -8,7 +8,7 @@ const Goal = ({goal}) => {
 
     const {currentUser, selectedGoal, calculateTotal, selectGoal, setHistory} = useContext(GlobalContext);
 
-    const {id, title, goalAmount, goalTransactions} = goal;
+    const {id, title, goalTarget, goalTransactions} = goal;
 
     const chooseGoal = () => {
         if(selectedGoal) {
@@ -22,7 +22,7 @@ const Goal = ({goal}) => {
 
     let amount = calculateTotal(goalTransactions);
 
-    const goalPercent = (amount / goalAmount) * 100;
+    const goalPercent = (amount / goalTarget) * 100;
 
     return (
         <GoalContainer id={id} selectedGoal={selectedGoal} onClick={() => chooseGoal()}>
@@ -33,7 +33,7 @@ const Goal = ({goal}) => {
             <GoalSlider type="range" min="1" max="100" value={`${goalPercent}`} readOnly></GoalSlider>
             <GoalAmounts>
                 <span>$ {amount}</span>
-                <span>$ {goalAmount}</span>
+                <span>$ {goalTarget}</span>
             </GoalAmounts>
         </GoalContainer>
     )

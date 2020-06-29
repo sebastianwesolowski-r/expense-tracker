@@ -20,7 +20,7 @@ export const TransactionContainer = styled.li`
         display: none;
         position: absolute;
         left: 30px;
-        padding-bottom: 35px;
+        padding-bottom: 45px;
         border: none;
         background: none;
         outline: none;

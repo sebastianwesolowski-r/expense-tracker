@@ -19,6 +19,9 @@ export const GoalContainer = styled.li`
     &:hover {
         filter: brightness(0.95);
     }
+    @media (max-width: 800px) {
+        width: 90%;
+    }
 `;
 
 export const GoalHeader = styled.div`
